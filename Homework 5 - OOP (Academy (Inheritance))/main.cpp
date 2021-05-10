@@ -2,27 +2,42 @@
 Подумать, как сюда применить наследование.*/
 
 #include<iostream>
+#include<string>
+#include<ctime>
 using namespace std;
 
-class Box
+class Human 
 {
-	double height;
-	double width;
-	double depth;
-	bool is_open = false;
+	string last_name;
+	string first_name;
+	time_t birth_date;
+	
 public:
-	double get_height()const
+	const string& get_last_name()const
 	{
-		return height;
+		return last_name;
 	}
-	double get_width()const
+	const string& get_first_name()const
 	{
-		return width;
+		return first_name;
 	}
-	double get_depth()const
+	const time_t& get_birth_date()const
 	{
-		return depth;
+		return birth_date;
 	}
+	void set_last_name(const string& last_name)
+	{
+		this->last_name = last_name;
+	}
+	void set_first_name(const string& first_name)
+	{
+		this->first_name = first_name;
+	}
+	void set_birth_date(const string& birth_date)
+	{
+		this->birth_date = birth_date;
+	}
+	
 	Box& operator()(double height, double width, double depth)
 	{
 		this->height = height;
