@@ -10,7 +10,8 @@ class Human
 {
 	string last_name;
 	string first_name;
-	time_t birth_date;
+	//time_t birth_date;
+	unsigned int age;
 	
 public:
 	const string& get_last_name()const
@@ -21,9 +22,13 @@ public:
 	{
 		return first_name;
 	}
-	const time_t& get_birth_date()const
+	/*const time_t& get_birth_date()const
 	{
 		return birth_date;
+	}*/
+	unsigned int get_age()const
+	{
+		return age;
 	}
 	void set_last_name(const string& last_name)
 	{
@@ -33,72 +38,141 @@ public:
 	{
 		this->first_name = first_name;
 	}
-	void set_birth_date(const string& birth_date)
+	/*void set_birth_date(const time_t& birth_date)
 	{
 		this->birth_date = birth_date;
-	}
-	
-	Box& operator()(double height, double width, double depth)
+	}*/
+	void set_age(unsigned int age)
 	{
-		this->height = height;
-		this->width = width;
-		this->depth = depth;
-		return *this;
+		this->age = age;
 	}
-
-	Box(double height, double width, double depth)
+	//                   Constructors
+	Human(const string& last_name, const string& first_name, unsigned int age)//const time_t& birth_date)
 	{
-		this->height = height;
-		this->width = width;
-		this->depth = depth;
+		set_last_name(last_name);
+		set_first_name(first_name);
+		//set_birth_date(birth_date);
+		set_age(age);
+		cout << "HConstructor:\t" << this << endl;
 	}
-
-	void open()
+	~Human()
 	{
-		is_open = true;
+		cout << "HDestructor:\t" << this << endl;
 	}
-	void close()
-	{
-		is_open = false;
-	}
+	//                       Methods
 	void info()const
 	{
-		cout << height << "x" << width << "x" << depth << endl;
-		cout << (is_open ? "Open" : "Closed") << endl;
+		/*cout << "Last_name " << last_name << endl;
+		cout << "First_name" << first_name << endl;
+		//cout << "Birth_date" << birth_date << endl;
+		cout << "Age: \t\t" << age << "years" << endl;*/
+		cout << last_name << " " << first_name << ", " << age << " лет"<< endl;
 	}
 };
 
-class GiftBox :public Box
+class Student :public Human
 {
-	string cover;
-	string bantik;
+	string speciality;
+	string group;
+	double rating;
 public:
-	const string& get_conver()const
+	const string& get_speciality()const
 	{
-		return cover;
+		return speciality;
 	}
-	const string& get_bantik()const
+	const string& get_group()const
 	{
-		return bantik;
+		return group;
 	}
-	GiftBox
+	double get_rating()const
+	{
+		return rating;
+	}
+	void set_speciality(const string& speciality)
+	{
+		this->speciality = speciality;
+	}
+	void set_group(const string& group)
+	{
+		this->group = group;
+	}
+	void set_rating(double rating)
+	{
+		this->rating = rating;
+	}
+	//                     Constructors
+
+	Student 
 	(
-		double height, double width, double depth,
-		const string& cover, const string& bantik
-	) :Box(height, width, depth)
+		const string& last_name, const string& first_name, unsigned int age, //Атрибуты базового класса
+		const string& speciality, const string& group, double rating //Атрибуты нашего класса
+	):Human(last_name, first_name, age)
 	{
-		this->cover = cover;
-		this->bantik = bantik;
+		set_speciality(speciality);
+		set_group(group);
+		set_rating(rating);
+		cout << "SConstructor:\t" << this << endl;
+	}
+	~Student()
+	{
+		cout << "SDestructor:\t" << this << endl;
+	}
+	void info()const
+	{
+		Human:: info();
+		cout << speciality << ", " << group << ", успеваемость: " << rating << endl;
+	}
+};
+class Teacher :public Human
+{
+	string speciality;
+	unsigned int experience;
+public:
+	const string& get_speciality()const
+	{
+		return speciality;
+	}
+	unsigned int get_experience()const
+	{
+		return experience;
+	}
+	void set_speciality(const string& speciality)
+	{
+		this->speciality = speciality;
+	}
+	void set_experience(unsigned int experience)
+	{
+		this->experience = experience;
+	}
+	//                       Constructurs
+	Teacher
+	(
+		const string& last_name, const string& first_name, unsigned int age,
+		const string& speciality, unsigned int experience
+	) :Human(last_name, first_name, age)
+	{
+		set_speciality(speciality);
+		set_experience(experience);
+		cout << "TConstructor:\t" << this << endl;
+	}
+	~Teacher()
+	{
+		cout << "TDestructor:\t" << this << endl;
+	}
+	void info()const
+	{
+		Human::info();
+		cout << speciality << ", опыт преподавания: " << experience << " лет." << endl;
 	}
 };
 
 void main()
 {
 	setlocale(LC_ALL, "");
-	/*Box box;
-	box(2, 3, 4);
-	box.open();
-	box.close();
-	box.info();*/
-	GiftBox box(2, 3, 4, "С котами и мышами", "Зеленый бантик");
+	/*Human human("Тупенко", "Василий", 18);
+	human.info();*/
+	Student Vasya("Тупенко", "Василий", 18, "Программирование", "CPD_011", 4.5);
+	Vasya.info();
+	Teacher teacher("Einstein", "Albert", 150, "Phisics", 120);
+	teacher.info();
 }
