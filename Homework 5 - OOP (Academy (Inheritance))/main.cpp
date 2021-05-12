@@ -165,6 +165,30 @@ public:
 		cout << speciality << ", опыт преподавания: " << experience << " лет." << endl;
 	}
 };
+class Graduate :public Student 
+{
+	string topic; // Тема дипломного проекта
+public:
+	const string& get_topic()const
+	{
+		return this->topic;
+	}
+	void set_topic(const string& topic)
+	{
+		this->topic = topic;
+	}
+	Graduate
+	(
+		const string& last_name, const string& first_name, unsigned int age, //Атрибуты базового класса
+		const string& speciality, const string& group, double rating, //Атрибуты нашего класса
+		const string& topic
+	) :Student(last_name, first_name, age, speciality, group, rating),
+		topic(topic)
+	{
+		cout << "GConstructor:\t" << this << endl;
+	}
+
+};
 
 void main()
 {
