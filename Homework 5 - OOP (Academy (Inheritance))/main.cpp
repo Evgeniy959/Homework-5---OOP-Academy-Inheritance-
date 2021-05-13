@@ -3,14 +3,12 @@
 
 #include<iostream>
 #include<string>
-#include<ctime>
 using namespace std;
 
 class Human 
 {
 	string last_name;
 	string first_name;
-	//time_t birth_date;
 	unsigned int age;
 	
 public:
@@ -22,10 +20,6 @@ public:
 	{
 		return first_name;
 	}
-	/*const time_t& get_birth_date()const
-	{
-		return birth_date;
-	}*/
 	unsigned int get_age()const
 	{
 		return age;
@@ -38,20 +32,15 @@ public:
 	{
 		this->first_name = first_name;
 	}
-	/*void set_birth_date(const time_t& birth_date)
-	{
-		this->birth_date = birth_date;
-	}*/
 	void set_age(unsigned int age)
 	{
 		this->age = age;
 	}
 	//                   Constructors
-	Human(const string& last_name, const string& first_name, unsigned int age)//const time_t& birth_date)
+	Human(const string& last_name, const string& first_name, unsigned int age)
 	{
 		set_last_name(last_name);
 		set_first_name(first_name);
-		//set_birth_date(birth_date);
 		set_age(age);
 		cout << "HConstructor:\t" << this << endl;
 	}
@@ -62,10 +51,6 @@ public:
 	//                       Methods
 	void info()const
 	{
-		/*cout << "Last_name " << last_name << endl;
-		cout << "First_name" << first_name << endl;
-		//cout << "Birth_date" << birth_date << endl;
-		cout << "Age: \t\t" << age << "years" << endl;*/
 		cout << last_name << " " << first_name << ", " << age << " лет"<< endl;
 	}
 };
@@ -104,8 +89,8 @@ public:
 
 	Student 
 	(
-		const string& last_name, const string& first_name, unsigned int age, //Атрибуты базового класса
-		const string& speciality, const string& group, double rating //Атрибуты нашего класса
+		const string& last_name, const string& first_name, unsigned int age, 
+		const string& speciality, const string& group, double rating 
 	):Human(last_name, first_name, age)
 	{
 		set_speciality(speciality);
@@ -126,33 +111,33 @@ public:
 class Teacher :public Human
 {
 	string speciality;
-	unsigned int experience;
+	unsigned int experience_worke;
 public:
 	const string& get_speciality()const
 	{
 		return speciality;
 	}
-	unsigned int get_experience()const
+	unsigned int get_experience_worke()const
 	{
-		return experience;
+		return experience_worke;
 	}
 	void set_speciality(const string& speciality)
 	{
 		this->speciality = speciality;
 	}
-	void set_experience(unsigned int experience)
+	void set_experience_worke(unsigned int experience_worke)
 	{
-		this->experience = experience;
+		this->experience_worke = experience_worke;
 	}
 	//                       Constructurs
 	Teacher
 	(
 		const string& last_name, const string& first_name, unsigned int age,
-		const string& speciality, unsigned int experience
+		const string& speciality, unsigned int experience_worke
 	) :Human(last_name, first_name, age)
 	{
 		set_speciality(speciality);
-		set_experience(experience);
+		set_experience_worke(experience_worke);
 		cout << "TConstructor:\t" << this << endl;
 	}
 	~Teacher()
@@ -162,12 +147,13 @@ public:
 	void info()const
 	{
 		Human::info();
-		cout << speciality << ", опыт преподавания: " << experience << " лет." << endl;
+		cout << speciality << ", опыт работы преподавателем: " << experience_worke << " лет." << endl;
 	}
 };
 class Graduate :public Student 
 {
 	string topic; // Тема дипломного проекта
+	string page_count; // Количество страниц (требуемый объем диплома)
 public:
 	const string& get_topic()const
 	{
@@ -177,14 +163,23 @@ public:
 	{
 		this->topic = topic;
 	}
+	const string& get_page_count()const
+	{
+		return page_count;
+	}
+	void set_page_count(const string& page_count)
+	{
+		this->page_count = page_count;
+	}
 	Graduate
 	(
-		const string& last_name, const string& first_name, unsigned int age, //Атрибуты базового класса
-		const string& speciality, const string& group, double rating, //Атрибуты нашего класса
-		const string& topic
-	) :Student(last_name, first_name, age, speciality, group, rating),
-		topic(topic)
+		const string& last_name, const string& first_name, unsigned int age, 
+		const string& speciality, const string& group, double rating, 
+		const string& topic, const string& page_count
+	) :Student(last_name, first_name, age, speciality, group, rating)	
 	{
+		set_topic(topic); 
+		set_page_count(page_count);
 		cout << "GConstructor:\t" << this << endl;
 	}
 	~Graduate()
@@ -194,7 +189,7 @@ public:
 	void info()const
 	{
 		Student::info();
-		cout << "Тема дипломного проекта: " << topic << endl;
+		cout << "Тема дипломного проекта: " << topic << ", Требуемый объем дипломного проекта: " << page_count <<  endl;
 	}
 
 };
@@ -202,12 +197,10 @@ public:
 void main()
 {
 	setlocale(LC_ALL, "");
-	/*Human human("Тупенко", "Василий", 18);
-	human.info();*/
-	Student Vasya("Тупенко", "Василий", 18, "Программирование", "CPD_011", 4.5);
-	Vasya.info();
-	Teacher teacher("Einstein", "Albert", 150, "Phisics", 120);
+	Student Ivan("Гаврилов", "Иван", 20, "Разработка программного обеспечения", "CPD_011", 4.7);
+	Ivan.info();
+	Teacher teacher("Абрамов", "Антон", 45, "Matematics", 20);
 	teacher.info();
-	Graduate Tony("Montana", "Antonio", 25, "Современные технологии продаж", "CPD_011", 80, "Распространение кокаина");
-	Tony.info();
+	Graduate Alekc("Соколов", "Алексей", 25, "Иноформационные технологии", "CV_011", 90, "Внедрение новейших технологий", "130-150 стр ");
+	Alekc.info();
 }

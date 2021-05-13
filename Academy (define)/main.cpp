@@ -1,5 +1,5 @@
-/*Создать проект Academy, в которм реализовать классы Student, Teacher и Graduate(Дипломник)
-Подумать, как сюда применить наследование.*/
+п»ї/*РЎРѕР·РґР°С‚СЊ РїСЂРѕРµРєС‚ Academy, РІ РєРѕС‚РѕСЂРј СЂРµР°Р»РёР·РѕРІР°С‚СЊ РєР»Р°СЃСЃС‹ Student, Teacher Рё Graduate(Р”РёРїР»РѕРјРЅРёРє)
+РџРѕРґСѓРјР°С‚СЊ, РєР°Рє СЃСЋРґР° РїСЂРёРјРµРЅРёС‚СЊ РЅР°СЃР»РµРґРѕРІР°РЅРёРµ.*/
 
 #include<iostream>
 #include<string>
@@ -74,7 +74,7 @@ public:
 		cout << "First_name" << first_name << endl;
 		//cout << "Birth_date" << birth_date << endl;
 		cout << "Age: \t\t" << age << "years" << endl;*/
-		cout << last_name << " " << first_name << ", " << age << " лет" << endl;
+		cout << last_name << " " << first_name << ", " << age << " Р»РµС‚" << endl;
 	}
 };
 
@@ -112,8 +112,8 @@ public:
 
 	Student
 	(
-		HUMAN_TAKE_PARAMETERS, //Атрибуты базового класса
-		STUDENT_GET_PARAMETERS //Атрибуты нашего класса
+		HUMAN_TAKE_PARAMETERS, //РђС‚СЂРёР±СѓС‚С‹ Р±Р°Р·РѕРІРѕРіРѕ РєР»Р°СЃСЃР°
+		STUDENT_GET_PARAMETERS //РђС‚СЂРёР±СѓС‚С‹ РЅР°С€РµРіРѕ РєР»Р°СЃСЃР°
 	) :Human(HUMAN_GIVE_PARAMETERS)
 	{
 		set_speciality(speciality);
@@ -128,7 +128,7 @@ public:
 	void info()const
 	{
 		Human::info();
-		cout << speciality << ", " << group << ", успеваемость: " << rating << endl;
+		cout << speciality << ", " << group << ", СѓСЃРїРµРІР°РµРјРѕСЃС‚СЊ: " << rating << endl;
 	}
 };
 class Teacher :public Human
@@ -170,12 +170,12 @@ public:
 	void info()const
 	{
 		Human::info();
-		cout << speciality << ", опыт преподавания: " << experience << " лет." << endl;
+		cout << speciality << ", РѕРїС‹С‚ РїСЂРµРїРѕРґР°РІР°РЅРёСЏ: " << experience << " Р»РµС‚." << endl;
 	}
 };
 class Graduate :public Student
 {
-	string topic; // Тема дипломного проекта
+	string topic; // РўРµРјР° РґРёРїР»РѕРјРЅРѕРіРѕ РїСЂРѕРµРєС‚Р°
 public:
 	const string& get_topic()const
 	{
@@ -187,8 +187,8 @@ public:
 	}
 	Graduate
 	(
-		HUMAN_TAKE_PARAMETERS, //Атрибуты базового класса
-		STUDENT_GET_PARAMETERS, //Атрибуты нашего класса
+		HUMAN_TAKE_PARAMETERS, //РђС‚СЂРёР±СѓС‚С‹ Р±Р°Р·РѕРІРѕРіРѕ РєР»Р°СЃСЃР°
+		STUDENT_GET_PARAMETERS, //РђС‚СЂРёР±СѓС‚С‹ РЅР°С€РµРіРѕ РєР»Р°СЃСЃР°
 		const string& topic
 	) :Student(HUMAN_GIVE_PARAMETERS, STUDENT_GIVE_PARAMETERS),
 		topic(topic)
@@ -202,7 +202,7 @@ public:
 	void info()const
 	{
 		Student::info();
-		cout << "Тема дипломного проекта: " << topic << endl;
+		cout << "РўРµРјР° РґРёРїР»РѕРјРЅРѕРіРѕ РїСЂРѕРµРєС‚Р°: " << topic << endl;
 	}
 
 };
@@ -212,13 +212,13 @@ void main()
 	setlocale(LC_ALL, "");
 
 #ifdef INHERITANCE_CHECK
-	/*Human human("Тупенко", "Василий", 18);
+	/*Human human("РўСѓРїРµРЅРєРѕ", "Р’Р°СЃРёР»РёР№", 18);
     human.info();*/
-	Student Vasya("Тупенко", "Василий", 18, "Программирование", "CPD_011", 4.5);
+	Student Vasya("РўСѓРїРµРЅРєРѕ", "Р’Р°СЃРёР»РёР№", 18, "РџСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ", "CPD_011", 4.5);
 	Vasya.info();
 	Teacher teacher("Einstein", "Albert", 150, "Phisics", 120);
 	teacher.info();
-	Graduate Tony("Montana", "Antonio", 25, "Современные технологии продаж", "CPD_011", 80, "Распространение кокаина");
+	Graduate Tony("Montana", "Antonio", 25, "РЎРѕРІСЂРµРјРµРЅРЅС‹Рµ С‚РµС…РЅРѕР»РѕРіРёРё РїСЂРѕРґР°Р¶", "CPD_011", 80, "Р Р°СЃРїСЂРѕСЃС‚СЂР°РЅРµРЅРёРµ РєРѕРєР°РёРЅР°");
 	Tony.info();
 #endif // INHERITANCE_CHECK
 
