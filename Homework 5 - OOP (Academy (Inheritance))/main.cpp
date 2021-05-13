@@ -187,6 +187,15 @@ public:
 	{
 		cout << "GConstructor:\t" << this << endl;
 	}
+	~Graduate()
+	{
+		cout << "GDestructor:\t" << this << endl;
+	}
+	void info()const
+	{
+		Student::info();
+		cout << "Тема дипломного проекта: " << topic << endl;
+	}
 
 };
 
@@ -199,4 +208,6 @@ void main()
 	Vasya.info();
 	Teacher teacher("Einstein", "Albert", 150, "Phisics", 120);
 	teacher.info();
+	Graduate Tony("Montana", "Antonio", 25, "Современные технологии продаж", "CPD_011", 80, "Распространение кокаина");
+	Tony.info();
 }
