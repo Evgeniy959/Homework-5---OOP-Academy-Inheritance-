@@ -9,7 +9,7 @@ class Human
 {
 	string last_name;
 	string first_name;
-	unsigned int age;
+	unsigned int age; // Возраст
 	
 public:
 	const string& get_last_name()const
@@ -111,7 +111,7 @@ public:
 class Teacher :public Human
 {
 	string speciality;
-	unsigned int experience_worke;
+	unsigned int experience_worke; // опыт работы преподавателем
 public:
 	const string& get_speciality()const
 	{
